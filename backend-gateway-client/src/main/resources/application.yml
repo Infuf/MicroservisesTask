@@ -20,10 +20,15 @@ spring:
           backend-gateway-client:
             provider: my-provider
             client-id: backend-gateway-client
-            client-secret: <ключ от клиента backend-gateway-client>
+            client-secret: rtOiebcKoVetyTY4p2Zb3pbNbut5K5DP
             authorization-grant-type: authorization_code
             redirect-uri: "http://backend-gateway-client:9090/login/oauth2/code/{registrationId}"
             scope: openid
         provider:
           my-provider:
             issuer-uri: http://backend-keycloak-auth:8080/auth/realms/ITM
+logging:
+  level:
+    org:
+      springframework:
+        security: WARN

@@ -44,6 +44,18 @@ public class UserServiceImpl implements UserService {
         }
     }
 
+    public void deleteAllUsers() {
+        List<UserRepresentation> users = keycloakClient.realm(realm).users().list();
+        for (UserRepresentation user : users) {
+            try {
+                keycloakClient.realm(realm).users().delete(user.getId());
+                log.info("Deleted UserId: {}", user.getId());
+            } catch (WebApplicationException ex) {
+                log.error("Exception on \"deleteUser\": ", ex);
+            }
+        }
+    }
+
     @Override
     public UserResponse getUserById(UUID id) {
         UserRepresentation userRepresentation;
